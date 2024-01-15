@@ -1,0 +1,23 @@
+.btn{
+    background:hsl(58, 85%, 80%);
+    border:0.5rem solid orange;
+    border-radius:15%;
+    aspect-ratio: 1 / 1;
+    color:red;
+    font-weight: bold;
+    cursor:pointer;
+}
+.btn.active{
+    background-color: rgb(206, 199, 69);
+    color:white;
+}
+
+.btn.inactive{
+    opacity:.3
+}
+
+.btn:hover:not(:disabled),
+.btn:focus:not(:disabled){
+    background-color: hsl(68, 71%, 41%);
+    color:blue
+}

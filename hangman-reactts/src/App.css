@@ -3,3 +3,12 @@ body {
   background-color: #65dd93; 
   overflow: hidden;
 }
+.play-btn{
+  background-color: #0d893d;
+  color:white;
+  font-weight: bold;
+  font-size: 15px;
+  border-radius: 10%;
+  height:40px;
+  width:100px;
+}

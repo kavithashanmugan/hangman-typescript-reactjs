@@ -1,18 +1,45 @@
-import React from 'react'
+import React from "react";
 
-const HangmanWord = () => {
-  const word = 'TELEPHONE';
-  const guessedLetters = ['L','E','T']
+type HangmanWordProps = {
+  guessedWords: string[];
+  wordToGuess: string;
+  reveal?: boolean
+};
+
+const HangmanWord = ({ guessedWords, wordToGuess, reveal=false }: HangmanWordProps) => {
 
   return (
-    // <div></div>
-    <div style={{ gap: '0.25rem', display: 'flex', fontSize: '6rem', textTransform: 'uppercase', fontWeight: 'bold' }}>
-      {word.split("").map((letter, index)=>(
-      <span style={{borderBottom:'.5rem solid yellow',marginLeft:'1rem'}} key={index}>
-        <span style={{visibility:guessedLetters.includes(letter)? 'visible' : 'hidden',color:'orange'}}> {letter}</span>
-       </span>
-    ))}</div>
-  )
-}
+    <div
+      style={{
+        gap: "0.25rem",
+        display: "flex",
+        fontSize: "4rem",
+        textTransform: "uppercase",
+        fontWeight: "bold",
+      }}
+    >
+      {wordToGuess.split("").map((letter, index) => (
+        
+        <span
+          style={{ borderBottom: ".5rem solid yellow", marginLeft: "1rem" }}
+          key={index}
+        >
+           <span
+            style={{
+              visibility:
+                guessedWords.includes(letter) || reveal
+                  ? "visible"
+                  : "hidden",
+              color:
+                !guessedWords.includes(letter) && reveal ? "red" : "green",
+            }}
+          >
+            {letter}
+          </span>
+        </span>
+      ))}
+    </div>
+  );
+};
 
-export default HangmanWord
+export default HangmanWord;

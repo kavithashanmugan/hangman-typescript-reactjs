@@ -1,3 +1,4 @@
+import styles from "./Keyboard.module.css";
 const KEYS = [
   "A",
   "B",
@@ -27,7 +28,18 @@ const KEYS = [
   "Z",
 ];
 
-const Keyboard = () => {
+type KeyboardProps = {
+  disabled: boolean;
+  activeLetters: string[];
+  inactiveLetters: string[];
+  addGuessedLetter: (letter: string) => void;
+};
+const Keyboard = ({
+  disabled = false,
+  activeLetters,
+  inactiveLetters,
+  addGuessedLetter,
+}: KeyboardProps) => {
   return (
     <div
       style={{
@@ -36,9 +48,22 @@ const Keyboard = () => {
         gap: "0.5rem",
       }}
     >
-      {KEYS.map((letter, index) => (
-        <button key={letter} style={{background:'yellow',border:'0.5rem solid orange',borderRadius:'15%',width: '75px', height: '75px'}}>{letter}</button>
-      ))}
+      {KEYS.map((letter) => {
+        const isActive = activeLetters.includes(letter);
+        const isInactive = inactiveLetters.includes(letter);
+
+        return (
+          <button
+            onClick={() => addGuessedLetter(letter)}
+            disabled={isInactive || isActive || disabled}
+            key={letter}
+            className={`${styles.btn} ${isActive ? styles.active : ""}
+             ${isInactive ? styles.inactive : ""}`}
+          >
+            {letter}
+          </button>
+        );
+      })}
     </div>
   );
 };
